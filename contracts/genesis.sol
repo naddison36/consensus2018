@@ -1,6 +1,6 @@
 /* 
 
-	Genesis.sol
+	Origin.sol
 	Consensus2018 Hackathon, NYC
   
 
@@ -28,7 +28,7 @@ contract Genesis {
 	mapping( address => Producer ) 		 public producers;
 	mapping( address => Attestor ) 		 public attestors;
 	mapping( address => Claim[] ) 		 public claims;
-	mapping( address => Validation[10][] ) public validations; // producer => [claimID, validationID]
+	mapping( address => Validation[10][10] ) public validations; // producer => [claimID, validationID]
 
 	// -------------------------------------------------------------
     // CONSTRUCTOR
@@ -153,24 +153,24 @@ contract Genesis {
 		} */
 
 		// set the validation in the claim
-		validations[p][claimID].push(Validation(msg.sender, score, now + 26 weeks));
+		// uint temp = validations[p].length;
+		// uint temp = validations[p][claimID].length;
+		validations[p][claimID][0] = Validation(msg.sender, score, now + 26 weeks);
 
 		// // recalculate the claim's rating with the new validation score
-		// claims[p][claimID].rating = 
-		// 		(claims[p][claimID].rating + score) / 
-		// 		(claims[p][claimID].numValidations + 1);
+		claims[p][claimID].rating = 
+				(claims[p][claimID].rating + score) / 
+				(claims[p][claimID].numValidations + 1);
 
 		// //increment the number of validations for that claim
-		// claims[p][claimID].numValidations = 
-		// 		claims[p][claimID].numValidations++;
+		claims[p][claimID].numValidations = 
+				claims[p][claimID].numValidations++;
 
-		// emit CreateValidation(msg.sender, p, claims[p][claimID].description, claimID);
+		emit CreateValidation(msg.sender, p, claims[p][claimID].description, claimID);
 
 	}
 	
     // -------------------------------------------------------------
     // MODIFIERS
     // -------------------------------------------------------------
-
-
 }

@@ -1,0 +1,12 @@
+.idea
+node_modules
+testchain/geth
+testchain/parity
+testchain/history
+testchain/keystore
+data
+.DS_Store
+
+config/*secret.yaml
+kubernetes/*secrets.yaml
+

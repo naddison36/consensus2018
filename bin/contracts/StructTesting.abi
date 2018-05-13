@@ -1,0 +1,1 @@
+[{"constant":false,"inputs":[{"components":[{"name":"name","type":"string"},{"name":"init","type":"bool"},{"components":[{"name":"init","type":"bool"}],"name":"nested","type":"tuple"}],"name":"simple","type":"tuple"}],"name":"save","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]

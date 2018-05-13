@@ -1,0 +1,10 @@
+---
+  api:
+    base_url: 'http://localhost:5000'
+    port: 5000
+  chain:
+    rpc_url: "http://localhost:8545"
+    no_gas_price: true
+    contract_address: '0xe3a0c8943356982867FC2b93739BD0f70C4B3a70'
+    contract_owner: '0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf'
+    firstProducerAddress: '0x19E7E376E7C213B7E7e7e46cc70A5dD086DAff2A'
