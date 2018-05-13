@@ -25,19 +25,19 @@ contract Genesis {
     // STATE DECLARATION
     // -------------------------------------------------------------
  
-	mapping( address => Producer ) public producers;
-	mapping( address => Attestor ) public attestors;
-	
-	uint public claimNumber = 1;
-	uint public validationNumber = 1;
-	
+	mapping( address => Producer ) 		 public producers;
+	mapping( address => Attestor ) 		 public attestors;
+	mapping( address => Claim[] ) 		 public claims;
+	mapping( address => Validation[10][] ) public validations; // producer => [claimID, validationID]
+
 	// -------------------------------------------------------------
     // CONSTRUCTOR
     // -------------------------------------------------------------
 
 	constructor()
+		public
 	{
-			// todo?
+		// todo?
 	}
 
 
@@ -48,26 +48,26 @@ contract Genesis {
 	struct Producer {
 		address pubkey;
 		string name;
-		Claim[] claims;
-        bool init;
+		bool init;
+		//Claim[] claims;
 	}
 
     struct Claim {
 		string description;
 		uint numValidations;
-		uint rating; // out of 100?
-		// mapping( address => Validation ) validations;
+		uint rating; // out of 100
+	//	mapping( address => Validation ) validations;
     }
 	
 	struct Attestor {
 		address pubkey;
 		string name;
-		// Validation[] validations;
+	//	Validation[] validations;
 	}
 
 	struct Validation {
 		address owner;
-		uint id;
+		// uint id;
 		uint score;
 		uint expiry;
 	}
@@ -76,85 +76,101 @@ contract Genesis {
     // EVENTS
 	// -------------------------------------------------------------
 
-	event CreateClaim(address producerAddress, Claim claim, uint length);
+	event CreateClaim(address producer, string claimDescription, uint claimID);
+	event CreateValidation(address attestor, address producer, string claimDescription, uint claimID);
 
     // -------------------------------------------------------------
     // FUNCTIONS
     // -------------------------------------------------------------
  
-	function createClaim( address producerAddress, Claim c )
+	
+	function createNewAttestor( string name )
 		public
 	{
-		// require the producer exists
-		require(producers[producerAddress].init); 
-		
-		// set the new claim for the producer
-		producers[producerAddress].claims.push(c);
-
-		// Emit the claimID for the new claim
-		emit CreateClaim(producerAddress, c, producers[producerAddress].claims.length);
+		attestors[msg.sender] = Attestor(msg.sender, name);
 	}
-
-
-	function validateClaim( address producerAddress, uint claimID, Validation v )
-		public
-	{
-		// ensure scores are within range
-		require( v.score >= 0 );
-		require( v.score <= 100 );
-
-		// ensure claim exists
-		require( producers[producerAddress].claims.length <= claimID );
-
-		// ensure producer exists
-		require( producers[producerAddress].init );
-
-		// ensure that the producer is not also the attestor
-		require(msg.sender != producerAddress);
-		
-		// ensure the validation has not already been made within the last 6 months
-		// require(producers[producerAddress].claims[claimID].validations[msg.sender].expiry < now);
-
-		// set the validation in the claim
-		// producers[producerAddress].claims[claimID].validations[msg.sender] = v;
-
-		// recalculate the claim's rating with the new validation score
-		// producers[producerAddress].claims[claimID].rating = 
-		// 		(producers[producerAddress].claims[claimID].rating + v.score) / (producers[producerAddress].claims[claimID].numValidations + 1);
-
-		// producers[producerAddress].claims[claimID].numValidations	= producers[producerAddress].claims[claimID].numValidations++;
-
-		// set the expiry for 6 months time
-		// producers[producerAddress].claims[claimID].validations[msg.sender].expiry = (now + 26 weeks);
-	}
-
-
-	function createNewProducer( Producer p ) // ABI v2 can pass in a struct
+	
+	function createNewProducer( address p, string name ) // ABI v2 can pass in a struct
 		public
 		returns (bool)
 	{
-		require( producers[p.pubkey].init );
-        require( p.pubkey == msg.sender);
+		if( producers[p].init )
+			return false;
 
-
-
-		producers[msg.sender] = Producer({
-			pubkey: p.pubkey,
-			name: p.name,
-			claims: p.claims,
-			init: true
-		}
-			
-		);
+		producers[msg.sender] = Producer(p,name,true);
 		return true;
 	}
 
+	function createNewClaim( string claimDescription )
+		public
+	{
+		// require the producer exists
+		require(producers[msg.sender].init); 
+		
+		// set the new claim for the producer
 
+		uint claimID = claims[msg.sender].length + 1;
+
+		claims[msg.sender].push(Claim(claimDescription, 0, 0)); // no need for 'new' keyword?
+		// validations[msg.sender].push([]);
+
+		// Emit the claimID for the new claim
+		emit CreateClaim(msg.sender, claimDescription, claims[msg.sender].length);
+	}
+
+
+	// Note, this funciton should ideally calculate the valID, but because Nick decided to
+	// originally get all tricky with structs which broke a whole bunch of stuff he's gonna
+	// have to keep track of the valID's
+	function validateClaim( address p, uint claimID, uint score )
+		public
+	{
+		// ensure scores are within range
+		require( score >= 0 );
+		require( score <= 5 );
+
+		// // ensure claim exists
+		require( claims[p].length >= claimID );
+
+		// // ensure producer exists
+		require( producers[p].init );
+
+		// // ensure that the producer is not also the attestor
+		require( msg.sender != p );
+		
+		// Basic check to ensure the supplied valID is not out of bounds
+		// require( validations[p][claimID].length <= valID );
+	
+		// ensure the validation has not already been made within the last 6 months
+		// require( validations[p][claimID][valID].expiry < now );
+		
+		/*
+			struct Validation {
+			address owner;
+			uint id;
+			uint score;
+			uint expiry;
+		} */
+
+		// set the validation in the claim
+		validations[p][claimID].push(Validation(msg.sender, score, now + 26 weeks));
+
+		// // recalculate the claim's rating with the new validation score
+		// claims[p][claimID].rating = 
+		// 		(claims[p][claimID].rating + score) / 
+		// 		(claims[p][claimID].numValidations + 1);
+
+		// //increment the number of validations for that claim
+		// claims[p][claimID].numValidations = 
+		// 		claims[p][claimID].numValidations++;
+
+		// emit CreateValidation(msg.sender, p, claims[p][claimID].description, claimID);
+
+	}
+	
     // -------------------------------------------------------------
     // MODIFIERS
     // -------------------------------------------------------------
- 
-
 
 
 }
