@@ -79,7 +79,7 @@ class Genesis {
         // Continue processing the request onto the chain .................................................................
         try {
             const firstProducerSigner = await this.signerFactory.create(firstProducerAddress, this.provider);
-            const promiEvent = this.genesisContract.validateClaim(firstProducerSigner, firstProducerAddress, 0, 0);
+            const promiEvent = this.genesisContract.validateClaim(firstProducerSigner, firstProducerAddress, 0, 4);
             ctx.body = {
                 'producerAddress': '0x19E7E376E7C213B7E7e7e46cc70A5dD086DAff2A',
                 'producerName': 'Andrew\'s Honey',
