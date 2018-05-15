@@ -7,12 +7,12 @@ The Origins Project is a platform for crowd-sourcing the verification of claims 
 
 ## Benefits  
 - Transparency & Accountability in Supply Chain
-- Scaleability & Coverage powered by Community
+- Scaleability & Coverage powered by Community Efforts
 - Natural Language Interface
 - Opportunity for Experts to Influence Consumer Choices
 
 ## Features
-- Custom Ethereum ERC
+- Custom Ethereum Contract
 - Voice Recognition by Google Transcription
 - Voice Synthesis by AWS Polly
 - Python Flask Web Framework
