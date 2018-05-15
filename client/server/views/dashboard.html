@@ -1,0 +1,101 @@
+{% extends "wrapper.html" %}
+{% block subtitle %} : Food Provenance powered by Blockchain{% endblock %}
+{% block body %}
+<!-- Header Block -->
+<div id="header">
+    <div id="header_container" class="container-fluid header-container navbar-fixed">
+        <div class="row navbar header-border">
+            <div class="col-xs-3">
+                <div id="header_menu" class="navbar-title-24 navbar-start dashboard-view" style="display: none;">
+                    <a id="menu_button" title="Menu" class="icon-list"></a>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div id="header_title" class="dashboard-view" style="display: none;">
+                    <div class="navbar-title-24 navbar-center hidden-lg hidden-md hidden-sm">
+                        <div id="header_title_mobile_text" title="{{ label }}">{{ title }}</div>
+                    </div>
+                    <div id="header_title_desktop" class="navbar-title-24 navbar-start hidden-xs">
+                        <div id="header_title_desktop_text" title="{{ label }}">{{ title }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div id="header_info" class="navbar-title-24 navbar-end landing-view" style="display: none;">
+                    <a id="info_button" title="Mission" class="icon-question"></a>
+                </div>
+                <div id="header_microphone" class="navbar-title-24 navbar-end" style="display: none;">
+                    <div id="microphone_burst">
+                        <a id="microphone_button" class="icon-microphone"></a>
+                    </div>
+                </div>
+                <div id="header_plus" class="navbar-title-24 navbar-end" style="display: none;">
+                    <a id="plus_button" class="icon-plus"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Content Block -->
+<div id="content">
+</div>
+<!-- Footer Block -->>
+<div id="footer">
+    <div id="footer_container" class="container-fluid footer-container">
+        <div class="landing-view" style="display: none;">
+            <div class="row navbar navbar-title-16">
+                <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                    <div class="text-nowrap font-text">A <a href="{{ contacts.twitter }}" target="_blank" class="letterhead">{{ organization }}</a> creation.</div>
+                </div>
+                <div class="hidden-lg hidden-md hidden-sm col-xs-12">
+                    <div class="text-center font-text">A <a href="{{ contacts.twitter }}" target="_blank" class="letterhead">{{ organization }}</a> creation.</div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                </div>
+            </div>
+        </div>
+        <div class="dashboard-view" style="display: none;"></div>
+    </div>
+</div>
+<!-- Modal Dialogs Block -->
+<div id="dialogs">
+    <div id="dialog_backdrop" class="page-container-100 dialog-backdrop" style="display: none;"></div>
+    <div id="dialog_backdrop_slideout" class="page-container-100 dialog-backdrop" style="display: none;"></div>
+    <div id="dialog_chat" class="chat-container chat-box" style="display: none;">
+        <div id="dialog_chat_column" class="col-xs-12">
+            <div id="dialog_chat_window" class="chat-window">
+                <div id="dialog_chat_message_box" class="section-last"></div>
+                <div id="dialog_chat_input_box" class="section-last"></div>
+                <div id="dialog_chat_submit_box" class="section-submit"></div>
+            </div>
+        </div>
+    </div>
+    <div id="dialog_menu" class="sidebar-left dialog-sidebar-left" style="display: none;">
+        <div class="container-fluid">
+            <div class="row navbar id-verified-border">
+                <div class="col-xs-2">
+                    <a id="dialog_menu_title_icon" title="Menu" class="navbar-title-24 navbar-start"><span class="icon-list"></span></a>
+                </div>
+                <div class="col-xs-8">
+                    <div id="dialog_menu_title_text" title="Menu" class="navbar-title-24 navbar-center">Menu</div>
+                </div>
+            </div>
+        </div>
+        <div id="dialog_menu_content_container" class="container-fluid">
+            {% for section in menu.sections %}
+            <section class="row section-row">
+                <div class="col-xs-12 text-left">
+                    {% for action in section.actions %}
+                    <div id="menu_action_{{ action.name|lower()|replace(' ', '_') }}" class="form-line">
+                        <a id="menu_action_{{ action.name|lower()|replace(' ', '_') }}_link" class="form-title font-hyperlink text-nowrap"{% if action.label %} title="{{ action.label }}{% endif %}">
+                            <span class="{% if action.icon %}{{ action.icon}}{% else %}icon-chemistry{% endif %} padding-right-10"></span>{% if action.name %}{{ action.name }}{% else %}Experiment{% endif %}
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

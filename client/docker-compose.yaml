@@ -1,0 +1,19 @@
+# docker compose configuration file
+# https://docs.docker.com/compose/compose-file/
+version: '3.2'
+services:
+  origins: # name for container alias and service in lab registry
+    image: origins # replace with preferred pre-built image name
+    build: # remove if using pre-built image
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5001
+    environment:
+      PORT: '5001'
+    volumes: # replace with volumes required by service
+      - {'type': 'bind', 'source': './cred', 'target': '/opt/cred'}
+      - {'type': 'bind', 'source': './data', 'target': '/opt/data'}
+      - {'type': 'bind', 'source': './server', 'target': '/opt/server'}
+    command: gunicorn -k gevent -w 1 --chdir /opt/server launch:app -b 0.0.0.0:5001 # eg.
+    

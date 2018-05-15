@@ -1,0 +1,18 @@
+{
+  "title": "Origins Project",
+  "subtitle": "Food Provenance powered by Blockchain",
+  "label": "Food Provenance powered by Blockchain",
+  "description": "Origins Project is a platform for crowd-sourcing the attestations of claims made by food producers.",
+  "organization": "Collective Acuity",
+  "contacts": {
+    "twitter": "https://twitter.com/CollectiveAcuit",
+    "facebook": "https://www.facebook.com/collectiveacuity/",
+    "email": "support@collectiveacuity.com",
+    "noreply": "no-reply@collectiveacuity.com"
+  },
+  "address": "1 Cloud Drive Server Farm, AC 10101",
+  "logo": { 
+    "png": "https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/30624646_1511833848927721_7565403421533746285_n.png?_nc_cat=0&oh=fa3408af5424a57c949aca050094f7cf&oe=5B2D7EDDR",
+    "svg": "/public/images/logo.svg"
+  }
+}

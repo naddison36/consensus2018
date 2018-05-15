@@ -1,0 +1,49 @@
+{
+    "andrews": {
+        "name": "Andrew's Honey",
+        "img": "",
+        "desc": "Honey Farm in New York City",
+        "claims": [
+            {
+                "claim_id": "andrews_nyc",
+                "claimant": "andrews",
+                "desc": "Made in New York",
+                "attest": [ "x1", "x3" ]
+            },
+            {
+                "claim_id": "andrews_organic",
+                "claimant": "andrews",
+                "desc": "Organic",
+                "attest": [ "x2" ]
+            },
+            {
+                "claim_id": "andrews_wage",
+                "claimant": "andrews",
+                "desc": "Living Wage",
+                "attest": []
+            }
+        ]
+    },
+    "brooks": {
+        "name": "Brooks Rooftop Farm",
+        "img": "",
+        "desc": "A Rooftop Greenhouse Farm located in Brooklyn",
+        "claims": [
+            {
+                "claim_id": "brooks_nyc",
+                "claimant": "brooks",
+                "desc": "Made in New York"
+            },
+            {
+                "claim_id": "brooks_organic",
+                "claimant": "brooks",
+                "desc": "Organic"
+            },
+            {
+                "claim_id": "brooks_wage",
+                "claimant": "brooks",
+                "desc": "Living Wage"
+            }
+        ]
+    }
+}

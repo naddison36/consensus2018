@@ -1,0 +1,29 @@
+{
+    "x1": {
+        "id": "x1",
+        "name": "GrowNYC",
+        "img": "",
+        "desc": "The sustainable resource for New Yorkers",
+        "web": "https://www.grownyc.org/",
+        "twitter": "https://www.grownyc.org/",
+        "certified": true
+    },
+    "x2": {
+        "id": "x2",
+        "name": "Wikimedia Foundation",
+        "img": "",
+        "desc": "Non-profit organization behind Wikipedia",
+        "web": "https://www.wikipedia.org/",
+        "twitter": "",
+        "certified": true
+    },
+    "x3": {
+        "id": "x3",
+        "name": "Tom's Guide to Produce",
+        "img": "",
+        "desc": "Covering farm fresh food throughout NYC",
+        "web": "https://www.tomsguide.com/",
+        "twitter": "",
+        "certified": false
+    }
+}

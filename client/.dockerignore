@@ -1,0 +1,26 @@
+#################  .dockerignore  #################
+
+# IDE Files
+.idea
+.gitignore
+.git
+.hgignore
+
+# Server content files
+server/
+data/
+
+# Notes & Configs
+/cred/
+/notes/
+/*.sh
+
+#################    IDE files    #################
+.DS_STORE
+.netbeans
+nbproject
+.node_history
+__pycache__
+
+################# version control #################
+.hg
