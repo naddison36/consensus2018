@@ -1,12 +1,79 @@
+################ credentials  ##################
+.lab/
+cred/
+keys/
+
+###############  media files  ##################
+publicity/
+data/
+
+############### distro files  ##################
+.webassets-cache/
+hooks/
+plugins/
+site/
+build/
+.Python
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+docs/_build/
+target/
+
+###############   IDE files   ##################
+.~lock.*
+.DS_STORE
+.netbeans
+nbproject
 .idea
-node_modules
+.node_history
+__pycache__
+*.so
+
+############## backup sync files ###############
+desktop.ini
+*.gdoc
+
+#################   data files    #################
 testchain/geth
 testchain/parity
 testchain/history
 testchain/keystore
-data
-.DS_Store
-
 config/*secret.yaml
 kubernetes/*secrets.yaml
+
+#################  unit testing   #################
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+
+#################  dependencies   #################
+node_modules/
+
+################# version control #################
+.hg/
+
+#################   backup sync   #################
+.dropbox
+Thumbs.db
+
+
+
+
+
+
 
