@@ -1,17 +1,6 @@
-# flaskAPI 
-_A RESTful API using Flask & APScheduler on Alpine & Gunicorn inside Docker_  
+# originsClient
+_A Web Service using Flask & APScheduler on Alpine & Gunicorn inside Docker_  
 **by [Collective Acuity](http://collectiveacuity.com)**
-
-## Features
-- REST API architecture
-- Auto-generated API endpoints
-- Auto-generated API documentation
-- Permission control using JWT
-- APScheduler support
-- WebClient framework
-- REST API Client
-- Configuration by Environmental Variables
-- Lean Footprint
 
 ## Requirements
 - Python and C dependencies listed in Dockerfile
