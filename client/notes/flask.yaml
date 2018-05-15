@@ -1,0 +1,5 @@
+system_environment: 'dev'
+system_ip_address: '127.0.0.1'
+flask_system_port: 5000
+flask_logging_level: 'DEBUG'
+flask_secret_key: 'ABC-DEF1234ghijkl-567MNOPQRST890uvwxyz'
